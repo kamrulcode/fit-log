@@ -11,7 +11,9 @@ type WorkoutActionsProps = {
 };
 
 const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
-  const { plan, saved, addToPlan, addToSaved } = usePlan();
+  const { plan, saved, addToPlan, addToSaved, removeFromSaved } = usePlan();
+
+  const isSaved = saved.some((item) => item.id === workout.id);
 
   const handleAddToPlan = () => {
     const added = addToPlan(workout);
@@ -26,12 +28,15 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
   };
 
   const handleSave = () => {
-    const added = addToSaved(workout);
+    if (isSaved) {
+      removeFromSaved(workout.id);
+      successToast("Removed from saved");
+    } else {
+      const added = addToSaved(workout);
 
-    if (added) {
-      successToast("Saved for later");
-    } else if (saved.some((item) => item.id === workout.id)) {
-      successToast("Already saved");
+      if (added) {
+        successToast("Saved for later");
+      }
     }
   };
 
@@ -50,10 +55,17 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
         {/* Save */}
         <button
           onClick={handleSave}
-          className="flex items-center gap-2 rounded-lg border border-gray-700 px-6 py-3 text-sm font-bold text-white transition hover:border-gray-500"
+          className={`flex h-11 items-center justify-center gap-2 rounded-xl border px-6 text-sm font-medium transition ${
+            isSaved
+              ? "border-[#caff00] text-[#caff00]"
+              : "border-[#37404d] text-[#d1d5db] hover:bg-[#171a20]"
+          }`}
         >
-          <Bookmark className="h-4 w-4" />
-          SAVE FOR LATER
+          <Bookmark
+            className="h-4 w-4"
+            fill={isSaved ? "currentColor" : "none"}
+          />
+          {isSaved ? "Saved" : "Save for later"}
         </button>
       </div>
     </div>

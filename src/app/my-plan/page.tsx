@@ -13,7 +13,7 @@ type Tab = "plan" | "saved";
 type SortOption = "duration" | "calories" | "rating";
 
 const MyPlanPage = () => {
-  const { plan, saved, removeFromPlan, removeFromSaved } = usePlan();
+  const { plan, saved, removeFromPlan, removeFromSaved, markDone } = usePlan();
 
   const [activeTab, setActiveTab] = useState<Tab>("plan");
 
@@ -157,10 +157,10 @@ const MyPlanPage = () => {
                   onRemove={() => handleRemove(workout.id)}
                   onDone={
                     activeTab === "plan"
-                      ? () => handleDone(workout.id)
+                      ? () => markDone(workout.id)
                       : undefined
                   }
-                  showDone={activeTab === "plan"}
+                  done={"done" in workout ? workout.done : false}
                 />
               ))
             ) : (

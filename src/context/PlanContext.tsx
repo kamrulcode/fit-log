@@ -1,8 +1,15 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { WorkoutsT } from "@/types/workout";
+import { successToast } from "@/components/toast";
 
 type PlanContextType = {
   plan: WorkoutsT[];
@@ -10,7 +17,8 @@ type PlanContextType = {
 
   addToPlan: (workout: WorkoutsT) => boolean;
   removeFromPlan: (id: number) => void;
-
+  toggleSaved: (id: number) => void;
+  markDone: (id: number) => void;
   addToSaved: (workout: WorkoutsT) => boolean;
   removeFromSaved: (id: number) => void;
 };
@@ -28,19 +36,21 @@ export const PlanProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Load data from localStorage
   useEffect(() => {
-    const savedPlan = localStorage.getItem("fitlog-plan");
-    const savedWorkouts = localStorage.getItem("fitlog-saved");
+    const loadData = () => {
+      try {
+        const savedPlan = localStorage.getItem("fitlog-plan");
+        const savedWorkouts = localStorage.getItem("fitlog-saved");
 
-    if (savedPlan) {
-      setPlan(JSON.parse(savedPlan));
-    }
+        setPlan(savedPlan ? JSON.parse(savedPlan) : null);
+        setSaved(savedWorkouts ? JSON.parse(savedWorkouts) : []);
+      } catch (error) {
+        console.error("Failed to load Fitlog data:", error);
+      } finally {
+        setIsLoaded(true);
+      }
+    };
 
-    if (savedWorkouts) {
-      setSaved(JSON.parse(savedWorkouts));
-    }
-
-    // Loading is finished
-    setIsLoaded(true);
+    loadData();
   }, []);
 
   // Save plan
@@ -98,6 +108,39 @@ export const PlanProvider = ({ children }: { children: React.ReactNode }) => {
     setSaved((currentSaved) => currentSaved.filter((item) => item.id !== id));
   };
 
+  const toggleSaved = useCallback(
+    (id: number) => {
+      setSaved((currentSaved) => {
+        const alreadySaved = currentSaved.some((item) => item.id === id);
+
+        if (alreadySaved) {
+          successToast("Removed from saved");
+
+          return currentSaved.filter((item) => item.id !== id);
+        }
+
+        successToast("Saved for later");
+
+        // Find the workout and add it
+        const workoutToSave = plan.find((item) => item.id === id);
+
+        if (!workoutToSave) {
+          return currentSaved;
+        }
+
+        return [...currentSaved, workoutToSave];
+      });
+    },
+    [plan],
+  );
+
+  const markDone = useCallback((id: number) => {
+    setPlan((current) =>
+      current.map((item) => (item.id === id ? { ...item, done: true } : item)),
+    );
+    successToast("Workout marked as done");
+  }, []);
+
   return (
     <PlanContext.Provider
       value={{
@@ -107,6 +150,8 @@ export const PlanProvider = ({ children }: { children: React.ReactNode }) => {
         removeFromPlan,
         addToSaved,
         removeFromSaved,
+        toggleSaved,
+        markDone,
       }}
     >
       {children}

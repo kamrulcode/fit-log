@@ -58,82 +58,81 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
 
           {/* Content */}
           <div>
-            <p className="text-sm font-bold uppercase text-lime-400">
-              {workout.difficulty}
-            </p>
-
-            <h1 className="mt-3 text-4xl font-black">{workout.name}</h1>
-
-            <p className="mt-5 leading-7 text-gray-400">
+            <h1 className="font-Oswald text-4xl font-bold uppercase tracking-tight sm:text-5xl">
+              {workout.name}
+            </h1>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-[#9ca3af]">
               {workout.description}
             </p>
-
             {/* Tags */}
             <div className="mt-5 flex flex-wrap gap-2">
-              {workout.muscleGroups.map((muscle) => (
+              {workout.muscleGroups.map((group) => (
                 <span
-                  key={muscle}
-                  className="rounded-full border border-gray-700 px-3 py-1 text-xs text-gray-300"
+                  key={group}
+                  className="rounded-full bg-[#caff00] px-4 py-1.5 text-xs font-bold text-black"
                 >
-                  {muscle}
+                  {group}
                 </span>
               ))}
             </div>
 
             {/* Stats */}
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <div className="rounded-lg border border-gray-800 bg-[#15181d] p-4">
-                <p className="text-xs text-gray-500">EQUIPMENT</p>
-
-                <p className="mt-2 text-sm font-bold">{workout.equipment}</p>
-              </div>
-
-              <div className="rounded-lg border border-gray-800 bg-[#15181d] p-4">
-                <p className="text-xs text-gray-500">DURATION</p>
-
-                <p className="mt-2 text-sm font-bold">{workout.duration} min</p>
-              </div>
-
-              <div className="rounded-lg border border-gray-800 bg-[#15181d] p-4">
-                <p className="text-xs text-gray-500">CALORIES</p>
-
-                <p className="mt-2 text-sm font-bold">
-                  {workout.caloriesBurned}
-                </p>
-              </div>
-
-              <div className="rounded-lg border border-gray-800 bg-[#15181d] p-4">
-                <p className="text-xs text-gray-500">RATING</p>
-
-                <p className="mt-2 text-sm font-bold">{workout.rating}</p>
-              </div>
+            <div className="mt-7 overflow-hidden rounded-2xl border border-[#292e37] bg-[#15181e]">
+              <Row label="EQUIPMENT" value={workout.equipment} />
+              <Row label="DIFFICULTY" value={workout.difficulty} />
+              <Row label="SETS" value={`${workout.sets}`} />
+              <Row label="REPS" value={workout.reps} />
+              <Row label="DURATION" value={`${workout.duration} min`} />
+              <Row label="CALORIES" value={`${workout.caloriesBurned} kcal`} />
+              <Row label="RATING" value={`${workout.rating}`} last />
             </div>
+            {/* instruction  */}
+
+            <section className="mt-8">
+              <h2 className="text-lg font-extrabold tracking-wide">
+                INSTRUCTIONS
+              </h2>
+              <ol className="mt-4 space-y-4">
+                {workout.instructions.map((instruction, i) => (
+                  <li
+                    key={instruction}
+                    className="flex gap-4 text-sm leading-6 text-[#c3c7ce]"
+                  >
+                    <span className="shrink-0 text-[#8d949e]">{i + 1}.</span>
+                    <span>{instruction}</span>
+                  </li>
+                ))}
+              </ol>
+            </section>
 
             {/* IMPORTANT */}
             <WorkoutActions workout={workout} />
           </div>
         </div>
-
-        {/* Instructions */}
-        <section className="mt-16">
-          <h2 className="text-2xl font-black">HOW TO DO IT</h2>
-
-          <div className="mt-6 space-y-4">
-            {workout.instructions.map((instruction, index) => (
-              <div
-                key={index}
-                className="flex gap-4 rounded-lg border border-gray-800 bg-[#15181d] p-5"
-              >
-                <span className="font-black text-lime-400">{index + 1}</span>
-
-                <p className="text-sm leading-6 text-gray-300">{instruction}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </main>
   );
 };
 
 export default WorkoutDetailsPage;
+
+function Row({
+  label,
+  value,
+  last = false,
+}: {
+  label: string;
+  value: string;
+  last?: boolean;
+}) {
+  return (
+    <div
+      className={`flex min-h-12.25 items-center justify-between gap-5 px-6 py-3.5 ${!last ? "border-b border-[#242933]" : ""}`}
+    >
+      <span className="text-xs font-bold tracking-wide text-[#9ca3af]">
+        {label}
+      </span>
+      <span className="text-right text-sm text-[#e5e7eb]">{value}</span>
+    </div>
+  );
+}
