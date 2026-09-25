@@ -57,4 +57,25 @@ FitLog is designed to work across:
 
 ---
 
-Built with ❤️ using Next.js and Tailwind CSS.
+---
+
+## 🔗 Links
+
+* 🌐 **Live Demo:** [View Live Project](https://fit-log-steel-omega.vercel.app/)
+* 💻 **GitHub Repository:** [View Source Code](https://github.com/kamrulcode/fit-log)
+
+---
+
+## 👨‍💻 Author
+
+**MD Kamrul Islam**
+
+* 💼 [LinkedIn](https://www.linkedin.com/in/kamruliislam/)
+* 🌐 [Portfolio](https://kamrullislam.webflow.io/)
+
+---
+
+<p align="center">
+  Made with ❤️ by <strong>MD Kamrul Islam</strong>
+</p>
+
