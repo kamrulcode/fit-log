@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { PlanProvider } from "@/context/PlanContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +32,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           <main>{children}</main>
         </PlanProvider>
+
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar
+          closeButton={false}
+          newestOnTop
+          toastClassName="!bg-transparent !p-0 !shadow-none"
+          bodyClassName="!p-0"
+          className="!w-auto"
+        />
       </body>
     </html>
   );

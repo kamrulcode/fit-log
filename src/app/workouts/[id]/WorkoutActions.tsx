@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { Check, Bookmark } from "lucide-react";
 
 import { WorkoutsT } from "@/types/workout";
 import { usePlan } from "@/context/PlanContext";
+import { successToast } from "@/components/toast";
 
 type WorkoutActionsProps = {
   workout: WorkoutsT;
@@ -13,36 +13,26 @@ type WorkoutActionsProps = {
 const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
   const { plan, saved, addToPlan, addToSaved } = usePlan();
 
-  const [message, setMessage] = useState("");
-
   const handleAddToPlan = () => {
     const added = addToPlan(workout);
 
     if (added) {
-      setMessage("Added to today's plan");
+      successToast("Added to today's plan");
     } else if (plan.some((item) => item.id === workout.id)) {
-      setMessage("Already added to today's plan");
+      successToast("Already added to today's plan");
     } else {
-      setMessage("Your plan can only have 5 workouts");
+      successToast("Your plan can only have 5 workouts");
     }
-
-    setTimeout(() => {
-      setMessage("");
-    }, 2500);
   };
 
   const handleSave = () => {
     const added = addToSaved(workout);
 
     if (added) {
-      setMessage("Saved for later");
+      successToast("Saved for later");
     } else if (saved.some((item) => item.id === workout.id)) {
-      setMessage("Already saved");
+      successToast("Already saved");
     }
-
-    setTimeout(() => {
-      setMessage("");
-    }, 2500);
   };
 
   return (
@@ -66,13 +56,6 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
           SAVE FOR LATER
         </button>
       </div>
-
-      {/* Toast */}
-      {message && (
-        <div className="mt-4 inline-block rounded-lg border border-gray-700 bg-[#15181d] px-4 py-3 text-sm text-white shadow-lg">
-          {message}
-        </div>
-      )}
     </div>
   );
 };
