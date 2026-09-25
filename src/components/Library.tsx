@@ -1,4 +1,4 @@
-import { Workout } from "@/types/workout";
+import { WorkoutsT } from "@/types/workout";
 import WorkoutCard from "./WorkoutCard";
 
 const API_URL = "https://api.abcz.workers.dev/api/fitlog";
@@ -6,7 +6,7 @@ const API_URL = "https://api.abcz.workers.dev/api/fitlog";
 const Library = async () => {
   const response = await fetch(API_URL);
 
-  const workouts: Workout[] = await response.json();
+  const workouts: WorkoutsT[] = await response.json();
 
   return (
     <section id="library" className="py-12">

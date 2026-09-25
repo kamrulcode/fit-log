@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, Flame, Star } from "lucide-react";
 
-import { Workout } from "@/types/workout";
+import { WorkoutsT } from "@/types/workout";
 
 interface WorkoutCardProps {
-  workout: Workout;
+  workout: WorkoutsT;
 }
 
 const WorkoutCard = ({ workout }: WorkoutCardProps) => {

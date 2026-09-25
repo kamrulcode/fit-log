@@ -1,4 +1,4 @@
-export interface Workout {
+export interface WorkoutsT {
   id: number;
   name: string;
   image: string;

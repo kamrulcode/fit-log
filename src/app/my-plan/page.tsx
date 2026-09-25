@@ -37,7 +37,7 @@ const MyPlanPage = () => {
         {/* Tabs */}
         <div className="mt-10 flex gap-6 border-b border-gray-800">
           <button className="border-b-2 border-lime-400 pb-3 text-sm font-bold text-lime-400">
-            Today's Plan
+            Today&apos;s Plan
           </button>
 
           <button className="pb-3 text-sm font-bold text-gray-500">
@@ -46,7 +46,7 @@ const MyPlanPage = () => {
         </div>
 
         {/* Empty state */}
-        <div className="flex min-h-[350px] flex-col items-center justify-center text-center">
+        <div className="flex min-h-87.5 flex-col items-center justify-center text-center">
           <h2 className="text-2xl font-black">NOTHING HERE YET</h2>
 
           <p className="mt-3 max-w-md text-sm leading-6 text-gray-400">
