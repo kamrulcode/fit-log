@@ -35,7 +35,7 @@ const PlanWorkoutCard = ({
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
           <h3
-            className={`font-Oswald text-xl font-bold uppercase ${done ? "text-[#aeb4be] line-through" : "text-white"}`}
+            className={`font-Oswald text-base font-bold uppercase ${done ? "text-[#aeb4be] line-through" : "text-white"}`}
           >
             {workout.name}
           </h3>
@@ -45,18 +45,18 @@ const PlanWorkoutCard = ({
             </span>
           )}
         </div>
-        <p className="mt-1 text-sm text-[#8f96a2]">{workout.equipment}</p>
-        <div className="mt-3 flex flex-wrap gap-4 text-xs text-[#aeb4be]">
+        <p className="mt-1 text-sm text-textS">{workout.equipment}</p>
+        <div className="mt-3 flex flex-wrap gap-4 text-xs text-textS">
           <span className="flex items-center gap-1.5">
-            <ClockIcon />
+            <ClockIcon className="w-4 h-4 text-action" />
             {workout.duration} min
           </span>
           <span className="flex items-center gap-1.5">
-            <FlameIcon />
+            <FlameIcon className="w-4 h-4 text-action" />
             {workout.caloriesBurned} kcal
           </span>
           <span className="flex items-center gap-1.5">
-            <StarIcon />
+            <StarIcon className="w-4 h-4 text-action" />
             {workout.rating}
           </span>
         </div>
@@ -64,7 +64,7 @@ const PlanWorkoutCard = ({
       <div className="flex shrink-0 flex-wrap gap-2">
         <Link
           href={`/workouts/${workout.id}`}
-          className="rounded-lg border border-[#37404d] px-3 py-2 text-xs font-bold text-[#d7dbe1] hover:bg-[#1b1f26]"
+          className="rounded-full border border-borderS2 px-4 py-2 text-xs font-normal text-cWhite hover:bg-[#1b1f26]"
         >
           View Details
         </Link>
@@ -72,9 +72,9 @@ const PlanWorkoutCard = ({
           <button
             disabled={done}
             onClick={onDone}
-            className="flex items-center gap-1.5 rounded-lg bg-[#caff00] px-3 py-2 text-xs font-bold text-black disabled:opacity-40"
+            className="flex items-center gap-1.5 rounded-full bg-action px-3 py-1 text-xs font-semibold text-black disabled:opacity-40"
           >
-            <CheckIcon />
+            <CheckIcon className="w-4 h-4" />
             Mark as Done
           </button>
         )}
@@ -82,9 +82,9 @@ const PlanWorkoutCard = ({
           <button
             onClick={onRemove}
             aria-label="Remove workout"
-            className="grid h-9 w-9 place-items-center rounded-lg border border-[#37404d] text-[#aeb4be] hover:border-red-400 hover:text-red-300"
+            className="grid h-9 w-9 place-items-center rounded-lg  text-textP hover:text-red-400"
           >
-            <XIcon />
+            <XIcon className="w-5 h-5" />
           </button>
         )}
       </div>

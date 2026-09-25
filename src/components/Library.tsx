@@ -9,10 +9,12 @@ const Library = async () => {
   const workouts: WorkoutsT[] = await response.json();
 
   return (
-    <section id="library" className="py-12">
+    <section id="library">
       {/* Heading */}
       <div className="mb-8">
-        <h2 className="text-3xl font-black text-white">THE LIBRARY</h2>
+        <h2 className="text-3xl font-black text-white font-Oswald tracking-tighter leading-9">
+          THE LIBRARY
+        </h2>
 
         <p className="mt-2 text-sm text-gray-400">
           Twelve lifts covering every major muscle group.

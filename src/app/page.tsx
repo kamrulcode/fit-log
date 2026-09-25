@@ -6,7 +6,6 @@ const HomePage = () => {
     <div className="min-h-screen">
       <main className="mx-auto max-w-7xl px-5">
         <Hero />
-
         <Library />
       </main>
     </div>

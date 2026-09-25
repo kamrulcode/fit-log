@@ -38,7 +38,7 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
   const workout: WorkoutsT = await response.json();
 
   return (
-    <main className="min-h-screen bg-[#0d0f12] text-white">
+    <main className="min-h-screen bg-cBlack text-white">
       <div className="mx-auto max-w-7xl px-5 py-10">
         <Link href="/" className="text-sm text-gray-400 hover:text-white">
           ← BACK TO WORKOUTS
@@ -50,9 +50,9 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
             <Image
               src={workout.image}
               alt={workout.name}
-              width={800}
-              height={600}
-              className="w-full rounded-xl object-cover"
+              width={1000}
+              height={1000}
+              className="w-full h-190 rounded-xl object-cover"
             />
           </div>
 
@@ -61,7 +61,7 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
             <h1 className="font-Oswald text-4xl font-bold uppercase tracking-tight sm:text-5xl">
               {workout.name}
             </h1>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-[#9ca3af]">
+            <p className="mt-3 max-w-2xl text-base leading-7 text-textP">
               {workout.description}
             </p>
             {/* Tags */}
@@ -69,7 +69,7 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
               {workout.muscleGroups.map((group) => (
                 <span
                   key={group}
-                  className="rounded-full bg-[#caff00] px-4 py-1.5 text-xs font-bold text-black"
+                  className="rounded-full bg-[#caff00] px-3.5 py-1 text-xs font-bold text-black"
                 >
                   {group}
                 </span>
@@ -127,9 +127,9 @@ function Row({
 }) {
   return (
     <div
-      className={`flex min-h-12.25 items-center justify-between gap-5 px-6 py-3.5 ${!last ? "border-b border-[#242933]" : ""}`}
+      className={`flex min-h-12.25 items-center justify-between gap-5 px-6 py-3.5 ${!last ? "border-b border-cardBorder" : ""}`}
     >
-      <span className="text-xs font-bold tracking-wide text-[#9ca3af]">
+      <span className="text-xs font-bold tracking-wide text-textP">
         {label}
       </span>
       <span className="text-right text-sm text-[#e5e7eb]">{value}</span>

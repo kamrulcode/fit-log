@@ -63,60 +63,62 @@ const MyPlanPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0d0f12] text-white">
+    <div className="min-h-screen bg-cBlack text-white">
       <main className="px-5 py-10">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
           <div>
-            <h1 className="text-4xl font-black">MY PLAN</h1>
+            <h1 className="text-3xl font-bold font-Oswald leading-9 tracking-tighter">
+              MY PLAN
+            </h1>
 
-            <p className="mt-2 text-sm text-gray-400">
+            <p className="mt-2 text-sm text-textP">
               Cap of five lifts for today. Finish them, then load more.
             </p>
           </div>
 
           {/* Metrics */}
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="rounded-xl border border-gray-800 bg-[#15181d] p-5">
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3 rounded-xl border border-gray-800 bg-[#15181d] p-5 text-4xl">
+            <div className=" pl-8">
               <p className="text-sm text-gray-400">Exercises</p>
 
-              <p className="mt-2 text-3xl font-bold">{plan.length}</p>
+              <p className="mt-2 font-bold font-Oswald text-action">
+                {plan.length}
+              </p>
             </div>
 
-            <div className="rounded-xl border border-gray-800 bg-[#15181d] p-5">
+            <div className="border-l border-borderS pl-8">
               <p className="text-sm text-gray-400">Minutes</p>
 
-              <p className="mt-2 text-3xl font-bold">{totalMinutes}</p>
+              <p className="mt-2 font-bold font-Oswald">{totalMinutes}</p>
             </div>
 
-            <div className="rounded-xl border border-gray-800 bg-[#15181d] p-5">
+            <div className="border-l border-borderS pl-8">
               <p className="text-sm text-gray-400">Calories</p>
 
-              <p className="mt-2 text-3xl font-bold">{totalCalories}</p>
+              <p className="mt-2  font-bold font-Oswaldfont-Oswald">
+                {totalCalories}
+              </p>
             </div>
           </div>
 
           {/* Tabs + Sort */}
-          <div className="mt-10 flex flex-col justify-between gap-5 border-b border-gray-800 sm:flex-row sm:items-end">
+          <div className="mt-10 flex flex-col justify-between gap-5  sm:flex-row sm:items-end">
             {/* Tabs */}
-            <div className="flex gap-6">
+            <div className="flex p-1 gap-6 bg-backgroundS border border-borderS text-xs  font-normal text-textS rounded-xl">
               <button
                 onClick={() => setActiveTab("plan")}
-                className={`pb-3 text-sm font-bold ${
-                  activeTab === "plan"
-                    ? "border-b-2 border-lime-400 text-lime-400"
-                    : "text-gray-500 hover:text-white"
-                }`}
+                className={`py-2 px-9  ${activeTab === "plan" ? " bg-backgroundS2 rounded-lg border border-borderS2 shadow-sortBox text-cWhite font-bold" : ""}`}
               >
                 TODAY&apos;S PLAN
               </button>
 
               <button
                 onClick={() => setActiveTab("saved")}
-                className={`pb-3 text-sm font-bold ${
+                className={`py-2 px-9 ${
                   activeTab === "saved"
-                    ? "border-b-2 border-lime-400 text-lime-400"
-                    : "text-gray-500 hover:text-white"
+                    ? "bg-backgroundS2 rounded-lg border border-borderS2 shadow-sortBox text-cWhite font-bold"
+                    : "e"
                 }`}
               >
                 SAVED
@@ -124,20 +126,36 @@ const MyPlanPage = () => {
             </div>
 
             {/* Sort */}
-            <div className="pb-3">
+            <div className="pb-3 flex gap-3 items-center relative">
+              <p className="text-textP text-xs font-normal">Sort By</p>
               <select
                 value={sortBy}
                 onChange={(event) =>
                   setSortBy(event.target.value as SortOption)
                 }
-                className="rounded-lg border border-gray-700 bg-[#15181d] px-3 py-2 text-sm text-white outline-none"
+                className="rounded-lg bg-backgroundS border border-borderS text-xs  font-normal pl-3 pr-9 py-2  text-white outline-none appearance-none"
               >
-                <option value="duration">Sort by Duration</option>
+                <option value="duration">Duration</option>
 
-                <option value="calories">Sort by Calories</option>
+                <option value="calories">Calories</option>
 
-                <option value="rating">Sort by Rating</option>
+                <option value="rating">Rating</option>
               </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 -top-2">
+                <svg
+                  className="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
 
@@ -158,8 +176,10 @@ const MyPlanPage = () => {
                 />
               ))
             ) : (
-              <div className="flex min-h-87.5 flex-col items-center justify-center text-center">
-                <h2 className="text-2xl font-black">NOTHING HERE YET</h2>
+              <div className="flex min-h-87.5 flex-col items-center justify-center text-center border border-borderS2 rounded-xl">
+                <h2 className="text-xl font-black font-Oswald">
+                  NOTHING HERE YET
+                </h2>
 
                 <p className="mt-3 max-w-md text-sm leading-6 text-gray-400">
                   {activeTab === "plan"

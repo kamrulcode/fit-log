@@ -31,7 +31,7 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
           {workout.muscleGroups.map((muscle) => (
             <span
               key={muscle}
-              className="rounded-full bg-lime-400 px-3 py-1 text-xs font-bold text-black"
+              className="rounded-full bg-action px-2.5 py-.5 text-[11px] font-bold text-black"
             >
               {muscle}
             </span>
@@ -39,10 +39,12 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
         </div>
 
         {/* Name */}
-        <h3 className="mt-4 text-xl font-bold text-white">{workout.name}</h3>
+        <h3 className="mt-4 text-lg font-bold text-white font-Oswald">
+          {workout.name}
+        </h3>
 
         {/* Equipment */}
-        <p className="mt-2 text-sm text-gray-400">{workout.equipment}</p>
+        <p className="mt-2 text-xs text-gray-400">{workout.equipment}</p>
 
         {/* Stats */}
         <div className="mt-5 flex items-center gap-4 text-xs text-gray-400">
