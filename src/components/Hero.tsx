@@ -5,14 +5,14 @@ import Banner from "@/assets/banner.png";
 
 const Hero = () => {
   return (
-    <section className="grid items-center gap-10 py-12 lg:grid-cols-2">
+    <section className="grid items-center gap-10 py-12 lg:grid-cols-2 bg-cardBack">
       {/* Left */}
       <div>
         <p className="mb-4 text-sm font-bold tracking-widest text-lime-400">
           WORKOUT LIBRARY
         </p>
 
-        <h1 className="text-5xl font-black leading-tight text-white md:text-6xl">
+        <h1 className="text-5xl font-black font-Oswald leading-tight text-white md:text-6xl">
           TRAIN WITH INTENT.
           <br />
           LOG EVERY SET.

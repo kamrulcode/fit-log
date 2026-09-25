@@ -19,12 +19,6 @@ const MyPlanPage = () => {
 
   const [sortBy, setSortBy] = useState<SortOption>("duration");
 
-  const handleDone = (id: number) => {
-    removeFromPlan(id);
-
-    successToast("Workout marked as done");
-  };
-
   const currentWorkouts = activeTab === "plan" ? plan : saved;
 
   const sortedWorkouts = useMemo(() => {

@@ -9,7 +9,7 @@ import { WorkoutsT } from "@/types/workout";
 type PlanWorkoutCardProps = {
   workout: WorkoutsT;
   onRemove: () => void;
-  done: boolean;
+  done?: boolean;
   onDone?: () => void;
 };
 

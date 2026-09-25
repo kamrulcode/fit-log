@@ -3,7 +3,7 @@ import Library from "@/components/Library";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-[#0d0f12]">
+    <div className="min-h-screen">
       <main className="mx-auto max-w-7xl px-5">
         <Hero />
 

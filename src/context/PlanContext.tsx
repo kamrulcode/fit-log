@@ -41,7 +41,7 @@ export const PlanProvider = ({ children }: { children: React.ReactNode }) => {
         const savedPlan = localStorage.getItem("fitlog-plan");
         const savedWorkouts = localStorage.getItem("fitlog-saved");
 
-        setPlan(savedPlan ? JSON.parse(savedPlan) : null);
+        setPlan(savedPlan ? JSON.parse(savedPlan) : []);
         setSaved(savedWorkouts ? JSON.parse(savedWorkouts) : []);
       } catch (error) {
         console.error("Failed to load Fitlog data:", error);
