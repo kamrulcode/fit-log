@@ -9,7 +9,7 @@ const Library = async () => {
   const workouts: WorkoutsT[] = await response.json();
 
   return (
-    <section id="library">
+    <section>
       {/* Heading */}
       <div className="mb-8">
         <h2 className="text-3xl font-black text-white font-Oswald tracking-tighter leading-9">

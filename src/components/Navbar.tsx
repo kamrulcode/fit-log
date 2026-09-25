@@ -9,11 +9,11 @@ const Navbar = () => {
   const pathname = usePathname();
   const { plan, saved } = usePlan();
   return (
-    <header className="mb-12 border-b border-menuBorder">
-      <div className="mx-auto flex max-w-310 navbar  shadow-sm  h-20">
-        <div className="navbar-start">
+    <header className="sm:mb-12 mb-4 border-b border-menuBorder">
+      <div className="mx-auto px-5 flex max-w-310 navbar  shadow-sm  h-20">
+        <div className="navbar-start md:justify-start justify-between md:w-1/2 w-2/3">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
               <svg
                 aria-label="Menu"
                 xmlns="http://www.w3.org/2000/svg"
@@ -52,13 +52,13 @@ const Navbar = () => {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-black text-white text-lg tracking-widest leading-7 font-Oswald"
+            className="flex items-center gap-2.5 font-black text-white tracking-widest leading-7 font-Oswald"
           >
-            <Image src={Logo} alt="logo" className="w-7 h-7" />
-            <span>FITLOG</span>
+            <Image src={Logo} alt="logo" className="sm:w-7 sm:h-7 w-4 h-4" />
+            <span className="sm:text-lg text-base">FITLOG</span>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden md:flex">
           <ul className="menu menu-horizontal px-1">
             <Link
               className={` py-1.5 px-4 text-xs font-semibold leading-4 ${pathname === "/" ? "font-bold text-action rounded-full bg-menuBack" : "text-textP"}`}
@@ -75,22 +75,22 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="navbar-end flex items-center gap-4">
+        <div className="navbar-end flex items-center sm:gap-4 gap-1.5 justify-center">
           <Link
             href="/my-plan"
-            className="flex items-center gap-2 text-xs text-[#c5c9d0]"
+            className="flex items-center sm:gap-2 gap-1 text-xs text-[#c5c9d0]"
           >
             <span>Plan</span>
-            <span className="grid h-5 min-w-5 place-items-center rounded-full bg-[#caff00] px-1 font-bold text-black">
+            <span className="flex justify-center items-center sm:h-5 h-3 sm:min-w-5 w-3 rounded-full bg-action px-1 font-bold text-black sm:text-base text-[10px]">
               {plan.length}
             </span>
           </Link>
           <Link
             href="/my-plan?saved=1"
-            className="flex items-center gap-2 text-xs text-[#c5c9d0]"
+            className="flex items-center sm:gap-2  gap-1 text-xs text-[#c5c9d0] justify-center"
           >
             <span>Saved</span>
-            <span className="grid h-5 min-w-5 place-items-center rounded-full border border-[#424854] px-1 font-bold text-[#c5c9d0]">
+            <span className="flex sm:h-5 h-3 sm:min-w-5 w-3  justify-center items-center rounded-full border border-[#424854] px-1 font-bold text-[#c5c9d0] sm:text-base text-[10px]">
               {saved.length}
             </span>
           </Link>

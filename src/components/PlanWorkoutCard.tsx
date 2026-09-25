@@ -21,7 +21,7 @@ const PlanWorkoutCard = ({
 }: PlanWorkoutCardProps) => {
   return (
     <article
-      className={`flex flex-col gap-4 rounded-2xl border bg-[#15181e] p-4 sm:flex-row sm:items-center ${done ? "border-[#caff00]/40" : "border-[#292e37]"}`}
+      className={`flex flex-col gap-4 rounded-2xl border bg-[#15181e] p-4 sm:flex-row sm:items-center sm:static relative ${done ? "border-[#caff00]/40" : "border-[#292e37]"}`}
     >
       <div className="relative h-36 w-full shrink-0 overflow-hidden rounded-xl sm:h-28 sm:w-40">
         <Image
@@ -82,7 +82,7 @@ const PlanWorkoutCard = ({
           <button
             onClick={onRemove}
             aria-label="Remove workout"
-            className="grid h-9 w-9 place-items-center rounded-lg  text-textP hover:text-red-400"
+            className="grid h-9 w-9 sm:static absolute top-0 right-0 sm:bg-transparent bg-backgroundS2 place-items-center rounded-lg  text-textP hover:text-red-400"
           >
             <XIcon className="w-5 h-5" />
           </button>

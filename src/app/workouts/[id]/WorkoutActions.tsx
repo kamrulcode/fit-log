@@ -41,12 +41,12 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
   };
 
   return (
-    <div className="mt-8">
+    <div className="mt-8  ">
       <div className="flex flex-wrap gap-3">
         {/* Add to plan */}
         <button
           onClick={handleAddToPlan}
-          className="flex items-center gap-2 rounded-lg bg-lime-400 px-6 py-3 text-sm font-bold text-black transition hover:bg-lime-300"
+          className="flex items-center gap-2 rounded-lg bg-lime-400 sm:px-6 sm:py-3 px-3 py-2 sm:text-sm  text-xs font-bold text-black transition hover:bg-lime-300"
         >
           <Check className="h-4 w-4" />
           ADD TO TODAY&apos;S PLAN
@@ -55,7 +55,7 @@ const WorkoutActions = ({ workout }: WorkoutActionsProps) => {
         {/* Save */}
         <button
           onClick={handleSave}
-          className={`flex h-11 items-center justify-center gap-2 rounded-xl border px-6 text-sm font-medium transition ${
+          className={`flex sm:h-11 h-9 items-center justify-center gap-2 rounded-xl border sm:px-6 px-3 text-sm font-medium transition ${
             isSaved
               ? "border-[#caff00] text-[#caff00]"
               : "border-[#37404d] text-[#d1d5db] hover:bg-[#171a20]"

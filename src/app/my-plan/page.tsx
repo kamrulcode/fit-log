@@ -64,11 +64,11 @@ const MyPlanPage = () => {
 
   return (
     <div className="min-h-screen bg-cBlack text-white">
-      <main className="px-5 py-10">
+      <main className="px-5 sm:py-10 py-5">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
           <div>
-            <h1 className="text-3xl font-bold font-Oswald leading-9 tracking-tighter">
+            <h1 className="sm:text-3xl text-xl font-bold font-Oswald leading-9 tracking-tighter">
               MY PLAN
             </h1>
 
@@ -78,8 +78,8 @@ const MyPlanPage = () => {
           </div>
 
           {/* Metrics */}
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3 rounded-xl border border-gray-800 bg-[#15181d] p-5 text-4xl">
-            <div className=" pl-8">
+          <div className="sm:mt-8 mt-5 grid  gap-4 grid-cols-3 rounded-xl border border-gray-800 bg-[#15181d] p-5 sm:text-4xl text-2xl">
+            <div className=" sm:pl-8 pl-4">
               <p className="text-sm text-gray-400">Exercises</p>
 
               <p className="mt-2 font-bold font-Oswald text-action">
@@ -103,9 +103,9 @@ const MyPlanPage = () => {
           </div>
 
           {/* Tabs + Sort */}
-          <div className="mt-10 flex flex-col justify-between gap-5  sm:flex-row sm:items-end">
+          <div className="mt-10 flex flex-col justify-between gap-5  sm:flex-row items-end">
             {/* Tabs */}
-            <div className="flex p-1 gap-6 bg-backgroundS border border-borderS text-xs  font-normal text-textS rounded-xl">
+            <div className="flex p-1 gap-6 bg-backgroundS border border-borderS sm:text-xs text-[10px] font-normal text-textS rounded-xl">
               <button
                 onClick={() => setActiveTab("plan")}
                 className={`py-2 px-9  ${activeTab === "plan" ? " bg-backgroundS2 rounded-lg border border-borderS2 shadow-sortBox text-cWhite font-bold" : ""}`}

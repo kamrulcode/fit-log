@@ -15,7 +15,7 @@ const WorkoutCard = ({ workout }: WorkoutCardProps) => {
       className="group overflow-hidden rounded-xl border border-gray-800 bg-[#15181d]"
     >
       {/* Image */}
-      <div className="relative h-56">
+      <div className="relative h-56" id="library">
         <Image
           src={workout.image}
           alt={workout.name}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import WorkoutActions from "./WorkoutActions";
 
 import { WorkoutsT } from "@/types/workout";
+import { notFound } from "next/navigation";
 
 type WorkoutDetailsPageProps = {
   params: Promise<{
@@ -21,30 +22,21 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
     },
   );
 
-  if (!response.ok) {
-    return (
-      <div className="min-h-screen bg-[#0d0f12] text-white">
-        <div className="mx-auto max-w-7xl px-5 py-20">
-          <h1 className="text-3xl font-black">WORKOUT NOT FOUND</h1>
-
-          <Link href="/" className="mt-6 inline-block text-lime-400">
-            ← Back to workouts
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  if (!response.ok) notFound();
 
   const workout: WorkoutsT = await response.json();
 
   return (
     <main className="min-h-screen bg-cBlack text-white">
-      <div className="mx-auto max-w-7xl px-5 py-10">
-        <Link href="/" className="text-sm text-gray-400 hover:text-white">
+      <div className="mx-auto max-w-7xl sm:px-5 px-2 sm:py-10 py-5">
+        <Link
+          href="/"
+          className="sm:text-sm text-xs text-gray-400 hover:text-white"
+        >
           ← BACK TO WORKOUTS
         </Link>
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-2">
+        <div className="sm:mt-8 mt-4 grid gap-10 lg:grid-cols-2">
           {/* Image */}
           <div>
             <Image
@@ -52,16 +44,16 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
               alt={workout.name}
               width={1000}
               height={1000}
-              className="w-full h-190 rounded-xl object-cover"
+              className="w-full md:h-190 h-80 rounded-xl object-cover"
             />
           </div>
 
           {/* Content */}
           <div>
-            <h1 className="font-Oswald text-4xl font-bold uppercase tracking-tight sm:text-5xl">
+            <h1 className="font-Oswald md:text-5xl sm:text-4xl text-2xl font-bold uppercase tracking-tight">
               {workout.name}
             </h1>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-textP">
+            <p className="mt-3 max-w-2xl sm:text-base text-xs sm:leading-7 leading-4 text-textP">
               {workout.description}
             </p>
             {/* Tags */}
@@ -69,7 +61,7 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
               {workout.muscleGroups.map((group) => (
                 <span
                   key={group}
-                  className="rounded-full bg-[#caff00] px-3.5 py-1 text-xs font-bold text-black"
+                  className="rounded-full bg-action sm:px-3.5 px-2 sm:py-1 py-.5 sm:text-xs text-[10px] font-bold text-black"
                 >
                   {group}
                 </span>
@@ -77,7 +69,7 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
             </div>
 
             {/* Stats */}
-            <div className="mt-7 overflow-hidden rounded-2xl border border-[#292e37] bg-[#15181e]">
+            <div className="sm:mt-7 mt-5 overflow-hidden rounded-2xl border border-[#292e37] bg-[#15181e] ">
               <Row label="EQUIPMENT" value={workout.equipment} />
               <Row label="DIFFICULTY" value={workout.difficulty} />
               <Row label="SETS" value={`${workout.sets}`} />
@@ -89,14 +81,14 @@ const WorkoutDetailsPage = async ({ params }: WorkoutDetailsPageProps) => {
             {/* instruction  */}
 
             <section className="mt-8">
-              <h2 className="text-lg font-extrabold tracking-wide">
+              <h2 className="sm:text-lg text-sm font-extrabold tracking-wide">
                 INSTRUCTIONS
               </h2>
               <ol className="mt-4 space-y-4">
                 {workout.instructions.map((instruction, i) => (
                   <li
                     key={instruction}
-                    className="flex gap-4 text-sm leading-6 text-[#c3c7ce]"
+                    className="flex sm:gap-4 gap-2 sm:text-sm text-xs sm:leading-6 leading-4 text-[#c3c7ce]"
                   >
                     <span className="shrink-0 text-[#8d949e]">{i + 1}.</span>
                     <span>{instruction}</span>
@@ -127,12 +119,14 @@ function Row({
 }) {
   return (
     <div
-      className={`flex min-h-12.25 items-center justify-between gap-5 px-6 py-3.5 ${!last ? "border-b border-cardBorder" : ""}`}
+      className={`flex min-h-12.25 items-center justify-between gap-5 sm:px-6 px-4 py-3.5   ${!last ? "border-b border-cardBorder" : ""}`}
     >
-      <span className="text-xs font-bold tracking-wide text-textP">
+      <span className="sm:text-xs text-[11px] font-bold tracking-wide text-textP">
         {label}
       </span>
-      <span className="text-right text-sm text-[#e5e7eb]">{value}</span>
+      <span className="text-right sm:text-sm text-[11px] text-[#e5e7eb]">
+        {value}
+      </span>
     </div>
   );
 }
